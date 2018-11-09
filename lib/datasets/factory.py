@@ -12,11 +12,17 @@ from __future__ import print_function
 
 __sets = {}
 from datasets.pascal_voc import pascal_voc
+from datasets.city_person import city_person
 from datasets.coco import coco
 from datasets.imagenet import imagenet
 from datasets.vg import vg
 
 import numpy as np
+
+# Set up city_person_<split>
+for split in ['train', 'val', 'test']:
+    name = 'city_person_{}'.format(split)
+    __sets[name] = (lambda split=split: city_person(split))
 
 # Set up voc_<year>_<split>
 for year in ['2007', '2012']:
